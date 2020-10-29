@@ -48,15 +48,15 @@
             >
                     <template v-slot:item="props">
                       <tr>
-                        <td align="left">{{ props.item.cust_number }}</td>
+                        <td align="left">{{ props.item }}</td>
                         <td align="left">{{ props.item.calorie_goal }}</td>
                         <td nowrap="true" align="left">{{ props.item.protein_goal }}</td>
                         <td nowrap="true" align="left">{{ props.item.fat_goal }}</td>
                         <td nowrap="true" align="left">{{ props.item.carb_goal }}</td>
                         <td nowrap="true" align="left">{{ props.item.calorie_min_max }}</td>
                         <td nowrap="true" align="left">{{ props.item.set_date }}</td>
-                        <td align="center"><v-icon @click="updateInvestment(props.item)">mdi-pencil</v-icon></td>
-                        <td align="center"><v-icon @click="deleteInvestment(props.item)">mdi-delete</v-icon></td>
+                        <td align="center"><v-icon @click="updateSettings(props.item)">mdi-pencil</v-icon></td>
+                        <!--<td align="center"><v-icon @click="deleteSettings(props.item)">mdi-delete</v-icon></td>-->
                       </tr>  
                     </template>
               </v-data-table>
@@ -74,11 +74,11 @@
                     >
                       <v-card>
                         <v-card-title class="pb-0 pt-0 pl-0">
-                          <v-col cols="9" class="text-left body-2 text-truncate">{{item.cust_number}} - {{item.calorie_goal }}</v-col>
+                          <v-col cols="9" class="text-left body-2 text-truncate">{{item.calorie_goal }}</v-col>
                           <v-col cols="3" class="text-center">
                             <v-card-actions>
                               <v-icon @click="updateSettings(item)" class="small">mdi-pencil</v-icon>
-                              <v-icon @click="deleteSettings(item)" class="small">mdi-delete</v-icon>
+                              <!--<v-icon @click="deleteSettings(item)" class="small">mdi-delete</v-icon>-->
                               <v-icon @click.native="expand(item, !isExpanded(item))" class="small">mdi-dots-horizontal</v-icon>
                             </v-card-actions>
                           </v-col>
@@ -87,6 +87,7 @@
 
                         <v-list v-show="isExpanded(item)" dense>
                           <v-list-item>
+                            <v-list-item-content>Calorie Goal:</v-list-item-content>
                             <v-list-item-content class="align-end">{{ item.calorie_goal }}</v-list-item-content>
                           </v-list-item>
                           <v-list-item>
@@ -103,7 +104,7 @@
                   </v-row>
                 </template>     
               </v-data-iterator>  
-              <v-btn class="blue mt-4 white--text" @click="addNewSettings">Add settings</v-btn>  
+              <!--<v-btn class="blue mt-4 white--text" @click="addNewSettings">Add settings</v-btn>-->
         </v-col>  
       </v-row>
     </v-container>  
@@ -118,15 +119,15 @@
   const apiService = new APIService();
 
   export default {
-    name: "InvestmentList",
+    name: "Settings",
     data: () => ({
-      investments: [],
+      settings: [],
       validUserName: "Guest",
       settingsSize: 0,
       showMsg: '',
       isMobile: false,
       headers: [
-        {text: 'Customer Number', sortable: false, align: 'left',},
+        {text: 'User', sortable: false, align: 'left',},
         {text: 'Calorie Goal', sortable: false, align: 'left',},
         {text: 'Protein Goal', sortable: false, align: 'left',},
         {text: 'Fat Goal', sortable: false, align: 'left',},
@@ -134,7 +135,7 @@
         {text: 'Calorie Min/Max', sortable: false, align: 'left',},
         {text: 'Set Date', sortable: false, align: 'left',},
         {text: 'Update', sortable: false, align: 'left',},
-        {text: 'Delete', sortable: false, align: 'left',}
+        //{text: 'Delete', sortable: false, align: 'left',}
 
       ],
 
@@ -181,7 +182,7 @@
           router.push("/auth");
         }
       },
-      updateSettings(settings) {        router.push('/settings-create/' + settings.pk);
+      updateSettings(settings) {        router.push('/settings-create/' + settings.user);
       },
       deleteSettings(settings) {
         apiService.deleteSettings(settings.pk).then(response => {

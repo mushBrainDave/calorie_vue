@@ -32,11 +32,11 @@
                     type="number"
                     /-->
                     <v-select
-                    v-model="settings.customer"
-                    label="Customer Number"
+                    v-model="settings"
+                    label="User"
                     :items="list"
                     item-value='pk'
-                    item-text='cust_number'
+                    item-text='customer'
                     ></v-select>
  
                     <v-text-field

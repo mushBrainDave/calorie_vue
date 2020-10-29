@@ -64,7 +64,7 @@
       dialog: false,
       menu: [
         { title: 'Home', url:"/"},
-        { title: 'Customers', url:"/customer-list" },
+        //{ title: 'Customers', url:"/customer-list" },
         { title: 'Intake', url:"/intake-list" },
         { title: 'Settings', url:"/settings-list" },
       ]

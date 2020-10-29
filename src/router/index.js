@@ -4,8 +4,8 @@ import Home from '@/components/Home'
 import Auth from '@/components/Auth'
 import CustomerList from '@/components/CustomerList'
 import CustomerCreate from '@/components/CustomerCreate'
-import InvestmentList from '@/components/SettingsList'
-import InvestmentCreate from '@/components/SettingsCreate'
+import SettingList from '@/components/SettingsList'
+import SettingCreate from '@/components/SettingsCreate'
 import IntakeList from '@/components/IntakeList'
 import IntakeCreate from '@/components/IntakeCreate'
 
@@ -43,22 +43,22 @@ export default new Router({
     {
       path: '/settings-list',
       name: 'SettingsList',
-      component: InvestmentList
+      component: SettingList
     },
     {
       path: '/settings-list/:msg',
       name: 'SettingsUpdatedList',
-      component: InvestmentList
+      component: SettingList
     },
     {
       path: '/settings-create',
       name: 'SettingsCreate',
-      component: InvestmentCreate
+      component: SettingCreate
     },
     {
       path: '/settings-create/:pk',
       name: 'SettingsUpdate',
-      component: InvestmentCreate
+      component: SettingCreate
     },
      {
       path: '/intake-list',

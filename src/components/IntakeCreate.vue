@@ -24,12 +24,11 @@
               <v-card-text>
                 <v-form ref="form" lazy-validation>
                   <v-container>
-                    <v-text-field
-                      v-model="intake.customer"
-                      label="Customer"
+                    <!--<v-text-field
+                      v-model="intake.user"
+                      label="User"
                       required
-                      type="number"
-                    />
+                    />-->
                     <v-text-field
                       v-model="intake.calories"
                       label="Calories"

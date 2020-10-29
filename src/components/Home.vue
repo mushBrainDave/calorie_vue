@@ -31,7 +31,7 @@
               grid-list-md
             >
               <v-row>
-                <v-col>
+                <!--<v-col>
                   <v-card>
                     <v-img
                       :src="require('@/assets/images/customer.jpg')" height="200px">
@@ -45,7 +45,7 @@
                       <v-btn flat color="orange" @click="viewCustomers">View Details</v-btn>
                     </v-card-actions>
                   </v-card>
-                </v-col>
+                </v-col>-->
                 <v-col>
                   <v-card>
                      <v-img
@@ -53,11 +53,11 @@
                     </v-img>
                     <v-card-text>
                       <div class="blue--text text-h6">
-                        Investments
+                        Intake
                       </div>  
                     </v-card-text>
                     <v-card-actions>
-                      <v-btn flat color="orange" @click="viewInvestments">View Details</v-btn>
+                      <v-btn color="orange" @click="viewIntake">View Details</v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-col>
@@ -68,11 +68,11 @@
                     </v-img>
                     <v-card-text>
                       <div class="blue--text text-h6">
-                        Stocks
+                        Settings
                       </div>  
                     </v-card-text>
                     <v-card-actions>
-                      <v-btn flat color="orange" @click="viewStocks">View Details</v-btn>
+                      <v-btn color="orange" @click="viewSettings">View Details</v-btn>
                     </v-card-actions>
                   </v-card> 
                 </v-col>
@@ -100,8 +100,11 @@
       viewCustomers() {
         router.push('/customer-list');
       },
-      viewInvestments() {
-        router.push('/investment-list');
+      viewIntake() {
+        router.push('/intake-list');
+      },
+      viewSettings() {
+        router.push('/settings-list');
       },
       getUser() {
         if (localStorage.getItem("isAuthenticates")

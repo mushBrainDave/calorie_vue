@@ -61,7 +61,7 @@ export class APIService {
     return axios.post(url, settings, {headers: headers});
   }
   updateSettings(settings){
-    const url = `${API_URL}/api/settings/${settings.pk}`;
+    const url = `${API_URL}/api/settings/${settings.user}`;
     let jwtToken = localStorage.getItem('token');
     const headers = {Authorization: `jwt ${jwtToken}`};
     return axios.put(url, settings, {headers: headers});
@@ -94,7 +94,7 @@ export class APIService {
     return axios.post(url, intake, {headers: headers});
   }
   updateIntake(intake){
-    const url = `${API_URL}/api/intake/${intake.pk}`;
+    const url = `${API_URL}/api/intake/${intake.id}`;
     let jwtToken = localStorage.getItem('token');
     const headers = {Authorization: `jwt ${jwtToken}`};
     return axios.put(url, intake, {headers: headers});
