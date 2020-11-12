@@ -31,21 +31,6 @@
               grid-list-md
             >
               <v-row>
-                <!--<v-col>
-                  <v-card>
-                    <v-img
-                      :src="require('@/assets/images/customer.jpg')" height="200px">
-                    </v-img>
-                    <v-card-text>
-                      <div class="blue--text text-h6">
-                        Customers
-                      </div>  
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-btn flat color="orange" @click="viewCustomers">View Details</v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-col>-->
                 <v-col>
                   <v-card>
                      <v-img
@@ -97,9 +82,6 @@
       this.getUser();
     },
     methods: {
-      viewCustomers() {
-        router.push('/customer-list');
-      },
       viewIntake() {
         router.push('/intake-list');
       },

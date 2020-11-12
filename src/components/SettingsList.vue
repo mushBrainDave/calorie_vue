@@ -174,31 +174,8 @@
           }
         });
       },
-      addNewSettings() {
-        if (localStorage.getItem("isAuthenticates")
-          && JSON.parse(localStorage.getItem("isAuthenticates")) === true) {
-          router.push('/settings-create');
-        } else {
-          router.push("/auth");
-        }
-      },
       updateSettings(settings) {        router.push('/settings-create/' + settings.user);
       },
-      deleteSettings(settings) {
-        apiService.deleteSettings(settings.pk).then(response => {
-          if (response.status === 204) {
-            router.push('/settings-list/deleted/')
-            this.getSettings()
-          }
-        }).catch(error => {
-          if (error.response.status === 401) {
-            localStorage.removeItem('isAuthenticates');
-            localStorage.removeItem('log_user');
-            localStorage.removeItem('token');
-            router.push("/auth");
-          }
-        });
-      }
     }
   };
 </script>

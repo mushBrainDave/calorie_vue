@@ -1,6 +1,6 @@
 /* eslint-disable */
 import axios from 'axios';
-const API_URL = 'https://calorie-c.herokuapp.com'; /* http://groyce.pythonanywhere.com or http://localhost:8000 */
+const API_URL = 'http://127.0.0.1:8000'; /* http://groyce.pythonanywhere.com or http://localhost:8000 */
 
 export class APIService {
 
@@ -17,12 +17,6 @@ export class APIService {
     console.log(":::jwtToken:::::" + jwtToken);
     const headers = {Authorization: `jwt ${jwtToken}`};
     return axios.get(url, {headers: headers});
-  }
-  addNewSettings(settings){
-    const url = `${API_URL}/api/settings/`;
-    let jwtToken = localStorage.getItem('token');
-    const headers = {Authorization: `jwt ${jwtToken}`};
-    return axios.post(url, settings, {headers: headers});
   }
   updateSettings(settings){
     const url = `${API_URL}/api/settings/${settings.user}`;
