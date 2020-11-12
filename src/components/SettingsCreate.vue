@@ -77,8 +77,7 @@
                     />
  
                 </v-container>
-                <v-btn v-if="!isUpdate" class="blue white--text" @click="createSettings">Save</v-btn>
-                <v-btn v-if="isUpdate" class="blue white--text" @click="updateSettings">Update</v-btn>
+                <v-btn class="blue white--text" @click="updateSettings">Update</v-btn>
                 <v-btn class="white black--text" @click="cancelOperation">Cancel</v-btn>
                 </v-form>
               </v-card-text>
@@ -101,7 +100,7 @@
     components: {},
     data() {
       return {
-        customers: [],
+        settings: [],
         showError: false,
         settings: {},
         pageTitle: "Add New Setting",
@@ -112,17 +111,17 @@
     computed:{
       list:{
       get () {
-            return this.customers
+            return this.settings
         },
           set (newValue) {
-            this.customers = newValue
+            this.settings = newValue
           }
       }
     },
     methods: {
-      getCustomers() {
-        apiService.getCustomerList().then(response => {
-          this.customers = response.data.data;
+      getSettings() {
+        apiService.getSettingsList().then(response => {
+          this.settings = response.data.data;
           if (localStorage.getItem("isAuthenticates")
             && JSON.parse(localStorage.getItem("isAuthenticates")) === true) {
             this.validUserName = JSON.parse(localStorage.getItem("log_user"));
@@ -133,23 +132,6 @@
             localStorage.removeItem('log_user');
             localStorage.removeItem('token');
             router.push("/auth");
-          }
-        });
-      },
-      createSettings() {
-        apiService.addNewSettings(this.settings).then(response => {
-          if (response.status === 201) {
-            this.settings = response.data;
-             this.showMsg = "";
-            router.push('/settings-list/new');
-          }else{
-              this.showMsg = "error";
-          }
-        }).catch(error => {
-          if (error.response.status === 401) {
-            router.push("/auth");
-          }else if (error.response.status === 400) {
-            this.showMsg = "error";
           }
         });
       },
@@ -174,9 +156,9 @@
       }
     },
     mounted() {
-      this.getCustomers();
+      this.getSettings();
       if (this.$route.params.pk) {
-        this.pageTitle = "Edit Investment";
+        this.pageTitle = "Edit Settings";
         this.isUpdate = true;
         apiService.getSettings(this.$route.params.pk).then(response => {
           this.settings = response.data;

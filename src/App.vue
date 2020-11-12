@@ -45,9 +45,9 @@
       </v-menu>
       </div>
     </v-app-bar>
-    <v-content>
+    <v-main>
       <router-view/>
-    </v-content>
+    </v-main>
   </v-app>
 
 </template>
@@ -71,7 +71,7 @@
     }),
 
     mounted() {
-      apiService.getCustomerList().then(response => {
+      apiService.getSettingsList().then(response => {
         this.authenticated = true;
       }).catch(error => {
         if (error.response.status === 401) {

@@ -84,7 +84,7 @@
     components: {},
     data() {
       return {
-        customers: [],
+        intakes: [],
         showError: false,
         intake: {},
         pageTitle: "Add New Intake",
@@ -95,17 +95,17 @@
     computed:{
       list:{
       get () {
-            return this.customers
+            return this.intakes
         },
           set (newValue) {
-            this.customers = newValue
+            this.intakes = newValue
           }
       }
     },
     methods: {
-      getCustomers() {
-        apiService.getCustomerList().then(response => {
-          this.customers = response.data.data;
+      getIntakes() {
+        apiService.getIntakeList().then(response => {
+          this.intakes = response.data.data;
           if (localStorage.getItem("isAuthenticates")
             && JSON.parse(localStorage.getItem("isAuthenticates")) === true) {
             this.validUserName = JSON.parse(localStorage.getItem("log_user"));
@@ -157,7 +157,7 @@
       }
     },
     mounted() {
-      this.getCustomers();
+      this.getIntakes();
       if (this.$route.params.pk) {
         this.pageTitle = "Edit Intake";
         this.isUpdate = true;
