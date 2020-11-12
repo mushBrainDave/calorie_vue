@@ -18,7 +18,9 @@
     "vue-router": "^3.0.1",
     "vue-session": "^1.0.0",
     "vuetify": "^2.3.10",
-    "vuex": "^3.5.1"
+    "vuex": "^3.5.1",
+    "zingchart": "^2.9.1",
+    "zingchart-vue": "^2.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

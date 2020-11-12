@@ -7,12 +7,17 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import VueSession from 'vue-session'
 import '@mdi/font/css/materialdesignicons.css'
- 
+
+import 'zingchart/es6';
+import zingchartVue from 'zingchart-vue';
+Vue.component('zingchart', zingchartVue);
+
 Vue.use(Vuetify, {
   icons: {
     iconfont: 'mdi'
   }
 })
+
 Vue.use(VueSession)
 
 Vue.config.productionTip = false
