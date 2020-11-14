@@ -11,6 +11,7 @@
               </small>
             </footer>
           </blockquote>
+          <pie />
         </v-col>
       </v-row>
     </v-container>
@@ -72,9 +73,14 @@
 
 <script>
   import router from '../router';
+  import Pie from './charts/Pie';
+
 
   export default {
     name: 'Home',
+    components: {
+      Pie,
+    },
     data: () => ({
       validUserName: "Guest"
     }),
