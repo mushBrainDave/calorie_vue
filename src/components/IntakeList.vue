@@ -39,8 +39,15 @@
       <!-- Data table -->
       <v-row align="center" justify="center">
         <v-col cols="12" md="10" v-resize="onResize">
-            <desktop-table v-if="!isMobile" :intakes="intakes" :method="updateIntake" @update="updateIntake" @delete="deleteIntake"/>
-            <mobile-table v-else :intakes="intakes" @update="updateIntake" @delete="deleteIntake" />
+            <v-date-picker v-model="dates"  range />
+            <v-text-field
+              v-model="dateRangeText"
+              label="Date range"
+              prepend-icon="mdi-calendar"
+              readonly
+            ></v-text-field>
+            <table-desktop v-if="!isMobile" :intakes="intakes" :dates="dates" :method="updateIntake" @update="updateIntake" @delete="deleteIntake"/>
+            <table-mobile v-else :intakes="intakes" @update="updateIntake" @delete="deleteIntake" />
         <v-btn class="blue mt-4 white--text" @click="addNewIntake">Add Intake</v-btn>  
         </v-col>  
       </v-row>
@@ -55,16 +62,17 @@
   import {APIService} from '../http/APIService';
   const apiService = new APIService();
 
-  import DesktopTable from './charts/DesktopTable.vue';
-  import MobileTable from './charts/MobileTable.vue';
+  import TableDesktop from './charts/Tabledesktop';
+  import TableMobile from './charts/TableMobile';
 
   export default {
     name: "IntakeList",
     components: {
-      DesktopTable,
-      MobileTable
+      TableDesktop,
+      TableMobile
     },
     data: () => ({
+      dates: ['2020-11-12', '2020-11-15'],
       intakes: [],
       validUserName: "Guest",
       intakeSize: 0,
@@ -75,6 +83,11 @@
     mounted() {
       this.getIntakes();
       this.showMessages();
+    },
+    computed: {
+      dateRangeText () {
+        return this.dates.join(' ~ ')
+      },
     },
     methods: {
       onResize() {

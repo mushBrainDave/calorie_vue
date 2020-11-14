@@ -24,8 +24,8 @@
       >
         <template v-slot:item="props">
           <tr>
-            <td align="left">{{ props.item }}</td>
-            <td nowrap="true" align="left">{{ props.item.calories }}</td>
+            <!--<td align="left">{{ props.item }}</td>-->
+            <td nowrap="true" align="left"><v-chip dark :color="getColor(props.item.calories)">{{ props.item.calories }}</v-chip></td>
             <td nowrap="true" align="left">{{ props.item.protein }}</td>
             <td nowrap="true" align="left">{{ props.item.fat }}</td>
             <td nowrap="true" align="left">{{ props.item.carbs }}</td>
@@ -41,31 +41,30 @@
 <script>
 
   export default {
-    props: ['intakes'],
+    props: ['intakes', 'dates'],
     data() {
       return {
         search: '',
         headers: [
-          {text: 'User', sortable: false, align: 'left',},
+          //{text: 'User', sortable: false, align: 'left',},
           {text: 'Calories', sortable: true, align: 'left', value: 'calories'},
           {text: 'Protein', sortable: false, align: 'left',},
           {text: 'Fat', sortable: false, align: 'left',},
           {text: 'Carbs', sortable: false, align: 'left',},
           {text: 'Intake Date', sortable: true, align: 'left', value: 'intake_date'},
-          {text: 'Update', sortable: false, align: 'left',},
-          {text: 'Delete', sortable: false, align: 'left',}
+          {text: 'Update', sortable: false, align: 'center',},
+          {text: 'Delete', sortable: false, align: 'center',}
 
         ],
         sortBy: 'intake_date',
         sortDesc: false,
-        keys: [
-          'Calories',
-          'Intake_Date'
-        ]
       }
     },
     methods: {
-      
-    }
+      getColor (calories) {
+        if (calories > 2000) return 'red'
+        else return 'green'
+      }
+    },
   };
 </script>
