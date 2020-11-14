@@ -4,7 +4,7 @@ const API_URL = 'http://127.0.0.1:8000'; /* http://groyce.pythonanywhere.com or 
 
 export class APIService {
 
-  getSettings(param_pk){
+  getSetting(param_pk){
     const url = `${API_URL}/api/settings/${param_pk}`;
     let jwtToken = localStorage.getItem('token');
     console.log(":::jwtToken:::::"+jwtToken);
@@ -23,12 +23,6 @@ export class APIService {
     let jwtToken = localStorage.getItem('token');
     const headers = {Authorization: `jwt ${jwtToken}`};
     return axios.put(url, settings, {headers: headers});
-  }
-  deleteSettings(settings_Pk){
-    const url = `${API_URL}/api/settings/${settings_Pk}`;
-    let jwtToken = localStorage.getItem('token');
-    const headers = {Authorization: `jwt ${jwtToken}`};
-    return axios.delete(url, {headers: headers});
   }
 
   getIntake(param_pk){

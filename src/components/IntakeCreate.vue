@@ -94,12 +94,12 @@
     },
     computed:{
       list:{
-      get () {
-            return this.intakes
+        get () {
+          return this.intakes
         },
-          set (newValue) {
-            this.intakes = newValue
-          }
+        set (newValue) {
+          this.intakes = newValue
+        }
       }
     },
     methods: {

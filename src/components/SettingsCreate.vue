@@ -31,13 +31,13 @@
                     required
                     type="number"
                     /-->
-                    <v-select
+                    <!--<v-select
                     v-model="settings"
                     label="User"
                     :items="list"
-                    item-value='pk'
-                    item-text='customer'
-                    ></v-select>
+                    item-value='id'
+                    item-text='id'
+                    ></v-select>-->
  
                     <v-text-field
                     v-model="settings.calorie_goal"
@@ -100,9 +100,8 @@
     components: {},
     data() {
       return {
-        settings: [],
-        showError: false,
         settings: {},
+        showError: false,
         pageTitle: "Add New Setting",
         isUpdate: false,
         showMsg: '',
@@ -119,22 +118,6 @@
       }
     },
     methods: {
-      getSettings() {
-        apiService.getSettingsList().then(response => {
-          this.settings = response.data.data;
-          if (localStorage.getItem("isAuthenticates")
-            && JSON.parse(localStorage.getItem("isAuthenticates")) === true) {
-            this.validUserName = JSON.parse(localStorage.getItem("log_user"));
-          }
-        }).catch(error => {
-          if (error.response.status === 401) {
-            localStorage.removeItem('isAuthenticates');
-            localStorage.removeItem('log_user');
-            localStorage.removeItem('token');
-            router.push("/auth");
-          }
-        });
-      },
       cancelOperation(){
          router.push("/settings-list");
       },
@@ -156,11 +139,10 @@
       }
     },
     mounted() {
-      this.getSettings();
       if (this.$route.params.pk) {
         this.pageTitle = "Edit Settings";
         this.isUpdate = true;
-        apiService.getSettings(this.$route.params.pk).then(response => {
+        apiService.getSetting(this.$route.params.pk).then(response => {
           this.settings = response.data;
         }).catch(error => {
           if (error.response.status === 401) {

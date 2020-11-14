@@ -39,72 +39,69 @@
       <!-- Data table -->
       <v-row align="center" justify="center">
         <v-col cols="12" md="10" v-resize="onResize">
-            <v-data-table
-              :headers="headers"
+          <v-data-table
+            :headers="headers"
+            :items="settings"
+            class="elevation-1"
+            style="max-height: 300px; overflow-y: auto"
+            v-if="!isMobile"
+          >
+                  <template v-slot:item="props">
+                    <tr>
+                      <!--<td align="left">{{ props.item }}</td>-->
+                      <td align="left">{{ props.item.calorie_goal }}</td>
+                      <td nowrap="true" align="left">{{ props.item.protein_goal }}</td>
+                      <td nowrap="true" align="left">{{ props.item.fat_goal }}</td>
+                      <td nowrap="true" align="left">{{ props.item.carb_goal }}</td>
+                      <td nowrap="true" align="left">{{ props.item.calorie_min_max }}</td>
+                      <td nowrap="true" align="left">{{ props.item.set_date }}</td>
+                      <td align="center"><v-icon @click="updateSettings(props.item)">mdi-pencil</v-icon></td>
+                    </tr>  
+                  </template>
+            </v-data-table>
+            <v-data-iterator 
               :items="settings"
-              class="elevation-1"
-              style="max-height: 300px; overflow-y: auto"
-              v-if="!isMobile"
+              hide-default-footer
+              v-else
             >
-                    <template v-slot:item="props">
-                      <tr>
-                        <td align="left">{{ props.item }}</td>
-                        <td align="left">{{ props.item.calorie_goal }}</td>
-                        <td nowrap="true" align="left">{{ props.item.protein_goal }}</td>
-                        <td nowrap="true" align="left">{{ props.item.fat_goal }}</td>
-                        <td nowrap="true" align="left">{{ props.item.carb_goal }}</td>
-                        <td nowrap="true" align="left">{{ props.item.calorie_min_max }}</td>
-                        <td nowrap="true" align="left">{{ props.item.set_date }}</td>
-                        <td align="center"><v-icon @click="updateSettings(props.item)">mdi-pencil</v-icon></td>
-                        <!--<td align="center"><v-icon @click="deleteSettings(props.item)">mdi-delete</v-icon></td>-->
-                      </tr>  
-                    </template>
-              </v-data-table>
-              <v-data-iterator 
-                :items="settings"
-                hide-default-footer
-                v-else
-              >
-                <template v-slot:default="{ items, isExpanded, expand }">
-                  <v-row>
-                    <v-col
-                      v-for="item in items"
-                      :key="item.name"
-                      cols="12"
-                    >
-                      <v-card>
-                        <v-card-title class="pb-0 pt-0 pl-0">
-                          <v-col cols="9" class="text-left body-2 text-truncate">{{item.calorie_goal }}</v-col>
-                          <v-col cols="3" class="text-center">
-                            <v-card-actions>
-                              <v-icon @click="updateSettings(item)" class="small">mdi-pencil</v-icon>
-                              <!--<v-icon @click="deleteSettings(item)" class="small">mdi-delete</v-icon>-->
-                              <v-icon @click.native="expand(item, !isExpanded(item))" class="small">mdi-dots-horizontal</v-icon>
-                            </v-card-actions>
-                          </v-col>
-                        </v-card-title>
-                        <v-divider></v-divider>
+              <template v-slot:default="{ items, isExpanded, expand }">
+                <v-row>
+                  <v-col
+                    v-for="item in items"
+                    :key="item.name"
+                    cols="12"
+                  >
+                    <v-card>
+                      <v-card-title class="pb-0 pt-0 pl-0">
+                        <v-col cols="9" class="text-left body-2 text-truncate">{{item.calorie_goal }}</v-col>
+                        <v-col cols="3" class="text-center">
+                          <v-card-actions>
+                            <v-icon @click="updateSettings(item)" class="small">mdi-pencil</v-icon>
+                            <v-icon @click.native="expand(item, !isExpanded(item))" class="small">mdi-dots-horizontal</v-icon>
+                          </v-card-actions>
+                        </v-col>
+                      </v-card-title>
+                      <v-divider></v-divider>
 
-                        <v-list v-show="isExpanded(item)" dense>
-                          <v-list-item>
-                            <v-list-item-content>Calorie Goal:</v-list-item-content>
-                            <v-list-item-content class="align-end">{{ item.calorie_goal }}</v-list-item-content>
-                          </v-list-item>
-                          <v-list-item>
-                            <v-list-item-content>Calorie Min/Max:</v-list-item-content>
-                            <v-list-item-content class="align-end">{{ item.calorie_min_max }}</v-list-item-content>
-                          </v-list-item>
-                          <v-list-item>
-                            <v-list-item-content>Set Date:</v-list-item-content>
-                            <v-list-item-content class="align-end">{{ item.set_date }}</v-list-item-content>
-                          </v-list-item>
-                        </v-list>
-                      </v-card>
-                    </v-col>
-                  </v-row>
-                </template>     
-              </v-data-iterator>  
-              <!--<v-btn class="blue mt-4 white--text" @click="addNewSettings">Add settings</v-btn>-->
+                      <v-list v-show="isExpanded(item)" dense>
+                        <v-list-item>
+                          <v-list-item-content>Calorie Goal:</v-list-item-content>
+                          <v-list-item-content class="align-end">{{ item.calorie_goal }}</v-list-item-content>
+                        </v-list-item>
+                        <v-list-item>
+                          <v-list-item-content>Calorie Min/Max:</v-list-item-content>
+                          <v-list-item-content class="align-end">{{ item.calorie_min_max }}</v-list-item-content>
+                        </v-list-item>
+                        <v-list-item>
+                          <v-list-item-content>Set Date:</v-list-item-content>
+                          <v-list-item-content class="align-end">{{ item.set_date }}</v-list-item-content>
+                        </v-list-item>
+                      </v-list>
+                    </v-card>
+                  </v-col>
+                </v-row>
+              </template>     
+            </v-data-iterator>  
         </v-col>  
       </v-row>
     </v-container>  
@@ -127,14 +124,14 @@
       showMsg: '',
       isMobile: false,
       headers: [
-        {text: 'User', sortable: false, align: 'left',},
+        //{text: 'User', sortable: false, align: 'left',},
         {text: 'Calorie Goal', sortable: false, align: 'left',},
         {text: 'Protein Goal', sortable: false, align: 'left',},
         {text: 'Fat Goal', sortable: false, align: 'left',},
         {text: 'Carb Goal', sortable: false, align: 'left',},
         {text: 'Calorie Min/Max', sortable: false, align: 'left',},
         {text: 'Set Date', sortable: false, align: 'left',},
-        {text: 'Update', sortable: false, align: 'left',},
+        {text: 'Update', sortable: false, align: 'center',},
         //{text: 'Delete', sortable: false, align: 'left',}
 
       ],
@@ -174,7 +171,7 @@
           }
         });
       },
-      updateSettings(settings) {        router.push('/settings-create/' + settings.user);
+      updateSettings(settings) {        router.push('/settings-create/' + settings.id);
       },
     }
   };
