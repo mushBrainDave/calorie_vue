@@ -62,7 +62,7 @@
   import {APIService} from '../http/APIService';
   const apiService = new APIService();
 
-  import TableDesktop from './charts/Tabledesktop';
+  import TableDesktop from './charts/TableDesktop';
   import TableMobile from './charts/TableMobile';
 
   export default {
