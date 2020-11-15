@@ -39,15 +39,30 @@
       <!-- Data table -->
       <v-row align="center" justify="center">
         <v-col cols="12" md="10" v-resize="onResize">
-            <v-date-picker v-model="dates" range />
-            <v-text-field
-              v-model="dateRangeText"
-              label="Date range"
-              prepend-icon="mdi-calendar"
-              readonly
-            ></v-text-field>
-            <table-desktop v-if="!isMobile" :intakes="intakesByDate" :dates="dates" :method="updateIntake" @update="updateIntake" @delete="deleteIntake"/>
-            <table-mobile v-else :intakes="intakes" @update="updateIntake" @delete="deleteIntake" />
+          <v-menu
+            :close-on-content-click="false"
+            :nudge-right="40"
+            transition="scale-transition"
+            offset-y
+            min-width="290px"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                v-model="dateRangeText"
+                label="Intake Date Range"
+                prepend-icon="mdi-calendar"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+              ></v-text-field>
+            </template>
+            <v-date-picker
+              v-model="dates"
+              range
+            ></v-date-picker>
+          </v-menu>
+          <table-desktop v-if="!isMobile" :intakes="intakesByDate" :dates="dates" :method="updateIntake" @update="updateIntake" @delete="deleteIntake"/>
+          <table-mobile v-else :intakes="intakesByDate" @update="updateIntake" @delete="deleteIntake" />
         <v-btn class="blue mt-4 white--text" @click="addNewIntake">Add Intake</v-btn>  
         </v-col>  
       </v-row>
@@ -151,7 +166,7 @@
             router.push("/auth");
           }
         });
-      }
+      },
     }
   };
 </script>
