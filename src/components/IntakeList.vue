@@ -39,14 +39,14 @@
       <!-- Data table -->
       <v-row align="center" justify="center">
         <v-col cols="12" md="10" v-resize="onResize">
-            <v-date-picker v-model="dates"  range />
+            <v-date-picker v-model="dates" range />
             <v-text-field
               v-model="dateRangeText"
               label="Date range"
               prepend-icon="mdi-calendar"
               readonly
             ></v-text-field>
-            <table-desktop v-if="!isMobile" :intakes="intakes" :dates="dates" :method="updateIntake" @update="updateIntake" @delete="deleteIntake"/>
+            <table-desktop v-if="!isMobile" :intakes="intakesByDate" :dates="dates" :method="updateIntake" @update="updateIntake" @delete="deleteIntake"/>
             <table-mobile v-else :intakes="intakes" @update="updateIntake" @delete="deleteIntake" />
         <v-btn class="blue mt-4 white--text" @click="addNewIntake">Add Intake</v-btn>  
         </v-col>  
@@ -72,7 +72,7 @@
       TableMobile
     },
     data: () => ({
-      dates: ['2020-11-12', '2020-11-15'],
+      dates: ['2020-10-21', '2020-10-28'],
       intakes: [],
       validUserName: "Guest",
       intakeSize: 0,
@@ -88,6 +88,14 @@
       dateRangeText () {
         return this.dates.join(' ~ ')
       },
+      intakesByDate () {
+        return this.intakes.filter(entry => {
+          return (
+            entry.intake_date >= this.dates[0] &&
+            entry.intake_date <= this.dates[1]
+          )
+        })
+      }
     },
     methods: {
       onResize() {
