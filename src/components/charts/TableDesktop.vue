@@ -41,7 +41,7 @@
 <script>
 
   export default {
-    props: ['intakes', 'dates'],
+    props: ['intakes', 'dates', 'settings'],
     data() {
       return {
         search: '',
@@ -62,7 +62,7 @@
     },
     methods: {
       getColor (calories) {
-        if (calories > 2000) return 'red'
+        if (calories > this.settings[0].calorie_goal) return 'red'
         else return 'green'
       }
     },

@@ -61,7 +61,7 @@
               range
             ></v-date-picker>
           </v-menu>
-          <table-desktop v-if="!isMobile" :intakes="intakesByDate" :dates="dates" :method="updateIntake" @update="updateIntake" @delete="deleteIntake"/>
+          <table-desktop v-if="!isMobile" :intakes="intakesByDate" :settings="settings" :dates="dates" :method="updateIntake" @update="updateIntake" @delete="deleteIntake"/>
           <table-mobile v-else :intakes="intakesByDate" @update="updateIntake" @delete="deleteIntake" />
         <v-btn class="blue mt-4 white--text" @click="addNewIntake">Add Intake</v-btn>  
         </v-col>  
@@ -89,6 +89,7 @@
     data: () => ({
       dates: ['2020-10-21', '2020-10-28'],
       intakes: [],
+      settings: [],
       validUserName: "Guest",
       intakeSize: 0,
       showMsg: '',
@@ -97,6 +98,7 @@
 
     mounted() {
       this.getIntakes();
+      this.getSettings();
       this.showMessages();
     },
     computed: {
@@ -157,6 +159,23 @@
           if (response.status === 204) {
             router.push('/intake-list/deleted/')
             this.getintakes()
+          }
+        }).catch(error => {
+          if (error.response.status === 401) {
+            localStorage.removeItem('isAuthenticates');
+            localStorage.removeItem('log_user');
+            localStorage.removeItem('token');
+            router.push("/auth");
+          }
+        });
+      },
+      getSettings() {
+        apiService.getSettingsList().then(response => {
+          this.settings = response.data.data;
+          this.settingsSize = this.settings.length;
+          if (localStorage.getItem("isAuthenticates")
+            && JSON.parse(localStorage.getItem("isAuthenticates")) === true) {
+            this.validUserName = JSON.parse(localStorage.getItem("log_user"));
           }
         }).catch(error => {
           if (error.response.status === 401) {
