@@ -11,7 +11,6 @@
               </small>
             </footer>
           </blockquote>
-          <pie />
         </v-col>
       </v-row>
     </v-container>
@@ -26,45 +25,7 @@
             sm="10"
             md="8"
         >
-          <v-card class="elevation-2">
-            <v-container
-              fluid
-              grid-list-md
-            >
-              <v-row>
-                <v-col>
-                  <v-card>
-                     <v-img
-                      :src="require('@/assets/images/nonstock.jpg')" height="200px">
-                    </v-img>
-                    <v-card-text>
-                      <div class="blue--text text-h6">
-                        Intake
-                      </div>  
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-btn color="orange" @click="viewIntake">View Details</v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-col>
-                <v-col>
-                  <v-card>
-                    <v-img
-                      :src="require('@/assets/images/stocks.jpg')" height="200px">
-                    </v-img>
-                    <v-card-text>
-                      <div class="blue--text text-h6">
-                        Settings
-                      </div>  
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-btn color="orange" @click="viewSettings">View Details</v-btn>
-                    </v-card-actions>
-                  </v-card> 
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-card>
+          <pie />
         </v-col>
       </v-row>
     </v-container>
