@@ -45,7 +45,6 @@
     data() {
       return {
         search: '',
-        min: true,
         headers: [
           //{text: 'User', sortable: false, align: 'left',},
           {text: 'Calories', sortable: true, align: 'left', value: 'calories'},
@@ -61,15 +60,9 @@
         sortDesc: false,
       }
     },
-    computed: {
-      calorieMin() {
-        if (this.settings[0].calorie_min_max == false)
-          return this.min = false
-      }
-    },
     methods: {
       getColor (calories) {
-        if (this.min == false)
+        if (this.settings[0].calorie_min_max === true)
           if (calories > this.settings[0].calorie_goal) return 'red'
           else return 'green'
         else
