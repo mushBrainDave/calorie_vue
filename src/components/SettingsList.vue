@@ -53,7 +53,7 @@
                       <td nowrap="true" align="left">{{ props.item.protein_goal }}</td>
                       <td nowrap="true" align="left">{{ props.item.fat_goal }}</td>
                       <td nowrap="true" align="left">{{ props.item.carb_goal }}</td>
-                      <td nowrap="true" align="left">{{ props.item.calorie_min_max }}</td>
+                      <td nowrap="true" align="left">{{ booleanDisplay(props.item.calorie_min_max) }}</td>
                       <td nowrap="true" align="left">{{ props.item.set_date }}</td>
                       <td align="center"><v-icon @click="updateSettings(props.item)">mdi-pencil</v-icon></td>
                     </tr>  
@@ -90,7 +90,7 @@
                         </v-list-item>
                         <v-list-item>
                           <v-list-item-content>Calorie Min/Max:</v-list-item-content>
-                          <v-list-item-content class="align-end">{{ item.calorie_min_max }}</v-list-item-content>
+                          <v-list-item-content class="align-end">{{ booleanDisplay(item.calorie_min_max) }}</v-list-item-content>
                         </v-list-item>
                         <v-list-item>
                           <v-list-item-content>Set Date:</v-list-item-content>
@@ -129,7 +129,7 @@
         {text: 'Protein Goal', sortable: false, align: 'left',},
         {text: 'Fat Goal', sortable: false, align: 'left',},
         {text: 'Carb Goal', sortable: false, align: 'left',},
-        {text: 'Calorie Min/Max', sortable: false, align: 'left',},
+        {text: 'My calorie goal is', sortable: false, align: 'left',},
         {text: 'Set Date', sortable: false, align: 'left',},
         {text: 'Update', sortable: false, align: 'center',},
         //{text: 'Delete', sortable: false, align: 'left',}
@@ -142,6 +142,12 @@
       this.showMessages();
     },
     methods: {
+      booleanDisplay(bool) {
+        if (bool === true)
+          return String('the most calories I can get')
+        else
+          return String('the least calories I can get')
+      },
       onResize() {
           if (window.innerWidth < 600)
             this.isMobile = true;

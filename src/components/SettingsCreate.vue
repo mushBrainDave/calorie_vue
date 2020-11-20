@@ -63,9 +63,13 @@
                     required
                     type="number"
                     />
-                    <v-text-field
+                    <v-select
                     v-model="settings.calorie_min_max"
-                    label="Calorie Min Max"
+                    label="My calories goal is"
+                    :items="items"
+                    item-text="answer"
+                    item-value="value"
+                    return-value
                     required
                     type="boolean"
                     />
@@ -100,6 +104,10 @@
     components: {},
     data() {
       return {
+        items: [
+          { answer: 'the most calories I can get', value: true },
+          { answer: 'the least calories I can get', value: false}
+          ],
         settings: {},
         showError: false,
         pageTitle: "Add New Setting",
