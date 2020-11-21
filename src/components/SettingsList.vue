@@ -89,7 +89,7 @@
                           <v-list-item-content class="align-end">{{ item.calorie_goal }}</v-list-item-content>
                         </v-list-item>
                         <v-list-item>
-                          <v-list-item-content>Calorie Min/Max:</v-list-item-content>
+                          <v-list-item-content>My calorie goal is:</v-list-item-content>
                           <v-list-item-content class="align-end">{{ booleanDisplay(item.calorie_min_max) }}</v-list-item-content>
                         </v-list-item>
                         <v-list-item>
