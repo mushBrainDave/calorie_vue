@@ -23,9 +23,31 @@
         <v-col 
           cols="12"
             sm="10"
-            md="8"
+            md="10"
         >
-          <pie />
+          <v-menu
+            :close-on-content-click="false"
+            :nudge-right="40"
+            transition="scale-transition"
+            offset-y
+            min-width="290px"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                v-model="dateRangeText"
+                label="Intake Date Range"
+                prepend-icon="mdi-calendar"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+              ></v-text-field>
+            </template>
+            <v-date-picker
+              v-model="dates"
+              range
+            ></v-date-picker>
+          </v-menu>
+          <calorie-chart :intakes="intakesByDate" :dates="dates" />
         </v-col>
       </v-row>
     </v-container>
@@ -34,21 +56,55 @@
 
 <script>
   import router from '../router';
-  import Pie from './charts/Pie';
-
+  import {APIService} from '../http/APIService';
+  import CalorieChart from './charts/CalorieChart.vue';
+  const apiService = new APIService();
 
   export default {
     name: 'Home',
     components: {
-      Pie,
+      CalorieChart,
     },
     data: () => ({
-      validUserName: "Guest"
+      validUserName: "Guest",
+      intakes: [],
+      dates: ['2020-10-21', '2020-10-28'],
     }),
     mounted() {
       this.getUser();
+      this.getIntakes();
+    },
+    computed: {
+      dateRangeText () {
+        return this.dates.join(' ~ ')
+      },
+      intakesByDate () {
+        return this.intakes.filter(entry => {
+          return (
+            entry.intake_date >= this.dates[0] &&
+            entry.intake_date <= this.dates[1]
+          )
+        })
+      }
     },
     methods: {
+      getIntakes() {
+        apiService.getIntakeList().then(response => {
+          this.intakes = response.data.data;
+          this.intakeSize = this.intakes.length;
+          if (localStorage.getItem("isAuthenticates")
+            && JSON.parse(localStorage.getItem("isAuthenticates")) === true) {
+            this.validUserName = JSON.parse(localStorage.getItem("log_user"));
+          }
+        }).catch(error => {
+          if (error.response.status === 401) {
+            localStorage.removeItem('isAuthenticates');
+            localStorage.removeItem('log_user');
+            localStorage.removeItem('token');
+            router.push("/auth");
+          }
+        });
+      },
       viewIntake() {
         router.push('/intake-list');
       },
