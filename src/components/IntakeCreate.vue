@@ -35,19 +35,24 @@
                       required
                     />
                     <v-text-field
+                      v-model="intake.fat_perc"
+                      label="Body Fat (%)"
+                      required
+                    />
+                    <v-text-field
                       v-model="intake.protein"
-                      label="protein"
+                      label="Protein (g)"
                       required
                     />
                     <v-text-field
                       v-model="intake.fat"
-                      label="fat"
+                      label="Fat (g)"
                       required
                       type="number"
                     />
                     <v-text-field
                       v-model="intake.carbs"
-                      label="Carbs"
+                      label="Carbs (g)"
                       required
                       type="number"
 

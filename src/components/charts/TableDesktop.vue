@@ -26,6 +26,7 @@
           <tr>
             <!--<td align="left">{{ props.item }}</td>-->
             <td nowrap="true" align="left"><v-chip dark :color="getColor(props.item.calories)">{{ props.item.calories }}</v-chip></td>
+            <td nowrap="true" align="left">{{ props.item.fat_perc }}</td>
             <td nowrap="true" align="left">{{ props.item.protein }}</td>
             <td nowrap="true" align="left">{{ props.item.fat }}</td>
             <td nowrap="true" align="left">{{ props.item.carbs }}</td>
@@ -48,9 +49,10 @@
         headers: [
           //{text: 'User', sortable: false, align: 'left',},
           {text: 'Calories', sortable: true, align: 'left', value: 'calories'},
-          {text: 'Protein', sortable: false, align: 'left',},
-          {text: 'Fat', sortable: false, align: 'left',},
-          {text: 'Carbs', sortable: false, align: 'left',},
+          {text: 'Body Fat (%)', sortable: false, align: 'left', value: 'body_fat'},
+          {text: 'Protein (g)', sortable: false, align: 'left',},
+          {text: 'Fat (g)', sortable: false, align: 'left',},
+          {text: 'Carbs (g)', sortable: false, align: 'left',},
           {text: 'Intake Date', sortable: true, align: 'left', value: 'intake_date'},
           {text: 'Update', sortable: false, align: 'center',},
           {text: 'Delete', sortable: false, align: 'center',}

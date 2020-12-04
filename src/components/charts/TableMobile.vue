@@ -104,15 +104,19 @@
                     <v-list-item-content class="align-end">{{ item.calories }}</v-list-item-content>
                 </v-list-item>
                 <v-list-item>
-                    <v-list-item-content>Protein:</v-list-item-content>
+                    <v-list-item-content>Body Fat (%):</v-list-item-content>
+                    <v-list-item-content class="align-end">{{ item.fat_perc }}</v-list-item-content>
+                </v-list-item>
+                <v-list-item>
+                    <v-list-item-content>Protein (g):</v-list-item-content>
                     <v-list-item-content class="align-end">{{ item.protein }}</v-list-item-content>
                 </v-list-item>
                 <v-list-item>
-                    <v-list-item-content>Fat:</v-list-item-content>
+                    <v-list-item-content>Fat (g):</v-list-item-content>
                     <v-list-item-content class="align-end">{{ item.fat }}</v-list-item-content>
                 </v-list-item>
                 <v-list-item>
-                    <v-list-item-content>Carbs:</v-list-item-content>
+                    <v-list-item-content>Carbs (g):</v-list-item-content>
                     <v-list-item-content class="align-end">{{ item.carbs }}</v-list-item-content>
                 </v-list-item>
                 <v-list-item>

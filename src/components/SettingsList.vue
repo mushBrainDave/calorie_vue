@@ -50,6 +50,7 @@
                     <tr>
                       <!--<td align="left">{{ props.item }}</td>-->
                       <td align="left">{{ props.item.calorie_goal }}</td>
+                      <td nowrap="true" align="left">{{ props.item.fat_perc_goal }}</td>
                       <td nowrap="true" align="left">{{ props.item.protein_goal }}</td>
                       <td nowrap="true" align="left">{{ props.item.fat_goal }}</td>
                       <td nowrap="true" align="left">{{ props.item.carb_goal }}</td>
@@ -126,9 +127,10 @@
       headers: [
         //{text: 'User', sortable: false, align: 'left',},
         {text: 'Calorie Goal', sortable: false, align: 'left',},
-        {text: 'Protein Goal', sortable: false, align: 'left',},
-        {text: 'Fat Goal', sortable: false, align: 'left',},
-        {text: 'Carb Goal', sortable: false, align: 'left',},
+        {text: 'Body Fat Goal (%)', sortable: false, align: 'left',},
+        {text: 'Protein Goal (g)', sortable: false, align: 'left',},
+        {text: 'Fat Goal (g)', sortable: false, align: 'left',},
+        {text: 'Carb Goal (g)', sortable: false, align: 'left',},
         {text: 'My calorie goal is', sortable: false, align: 'left',},
         {text: 'Set Date', sortable: false, align: 'left',},
         {text: 'Update', sortable: false, align: 'center',},

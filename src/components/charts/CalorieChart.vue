@@ -10,7 +10,7 @@ import zingchartVue from "zingchart-vue";
 
 
 export default {
-  props: ['intakes'],
+  props: ['intakes', 'dates'],
   components: {
     zingchart: zingchartVue
   },
@@ -26,7 +26,6 @@ export default {
   },
 
   computed: {
-
     inta() {
       let sorted = this.intakes.sort((a,b) => a.intake_date - b.intake_date);
       return sorted.map(o => {
