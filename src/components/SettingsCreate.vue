@@ -46,6 +46,12 @@
                     type="number"
                     />
                     <v-text-field
+                    v-model="settings.weight_goal"
+                    label="Weight Goal (lbs)"
+                    required
+                    type="number"
+                    />
+                    <v-text-field
                     v-model="settings.fat_perc_goal"
                     label="Body Fat Goal (%)"
                     required

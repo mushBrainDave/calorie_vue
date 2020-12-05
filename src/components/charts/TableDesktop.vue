@@ -26,6 +26,7 @@
           <tr>
             <!--<td align="left">{{ props.item }}</td>-->
             <td nowrap="true" align="left"><v-chip dark :color="getColor(props.item.calories)">{{ props.item.calories }}</v-chip></td>
+            <td nowrap="true" align="left">{{ props.item.current_weight }}</td>
             <td nowrap="true" align="left">{{ props.item.fat_perc }}</td>
             <td nowrap="true" align="left">{{ props.item.protein }}</td>
             <td nowrap="true" align="left">{{ props.item.fat }}</td>
@@ -49,6 +50,7 @@
         headers: [
           //{text: 'User', sortable: false, align: 'left',},
           {text: 'Calories', sortable: true, align: 'left', value: 'calories'},
+          {text: 'Current Weight (lbs)', sortable: false, align: 'left', value: 'current_weight'},
           {text: 'Body Fat (%)', sortable: false, align: 'left', value: 'body_fat'},
           {text: 'Protein (g)', sortable: false, align: 'left',},
           {text: 'Fat (g)', sortable: false, align: 'left',},

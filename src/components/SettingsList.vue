@@ -50,6 +50,7 @@
                     <tr>
                       <!--<td align="left">{{ props.item }}</td>-->
                       <td align="left">{{ props.item.calorie_goal }}</td>
+                      <td nowrap="true" align="left">{{ props.item.weight_goal }}</td>
                       <td nowrap="true" align="left">{{ props.item.fat_perc_goal }}</td>
                       <td nowrap="true" align="left">{{ props.item.protein_goal }}</td>
                       <td nowrap="true" align="left">{{ props.item.fat_goal }}</td>
@@ -127,6 +128,7 @@
       headers: [
         //{text: 'User', sortable: false, align: 'left',},
         {text: 'Calorie Goal', sortable: false, align: 'left',},
+        {text: 'Weight Goal', sortable: false, align: 'left',},
         {text: 'Body Fat Goal (%)', sortable: false, align: 'left',},
         {text: 'Protein Goal (g)', sortable: false, align: 'left',},
         {text: 'Fat Goal (g)', sortable: false, align: 'left',},

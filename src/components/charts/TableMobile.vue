@@ -104,6 +104,10 @@
                     <v-list-item-content class="align-end">{{ item.calories }}</v-list-item-content>
                 </v-list-item>
                 <v-list-item>
+                    <v-list-item-content>Current Weight (lbs):</v-list-item-content>
+                    <v-list-item-content class="align-end">{{ item.current_weight }}</v-list-item-content>
+                </v-list-item>
+                <v-list-item>
                     <v-list-item-content>Body Fat (%):</v-list-item-content>
                     <v-list-item-content class="align-end">{{ item.fat_perc }}</v-list-item-content>
                 </v-list-item>
