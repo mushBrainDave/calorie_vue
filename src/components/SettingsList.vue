@@ -128,7 +128,7 @@
       headers: [
         //{text: 'User', sortable: false, align: 'left',},
         {text: 'Calorie Goal', sortable: false, align: 'left',},
-        {text: 'Weight Goal', sortable: false, align: 'left',},
+        {text: 'Weight Goal (lbs)', sortable: false, align: 'left',},
         {text: 'Body Fat Goal (%)', sortable: false, align: 'left',},
         {text: 'Protein Goal (g)', sortable: false, align: 'left',},
         {text: 'Fat Goal (g)', sortable: false, align: 'left',},
