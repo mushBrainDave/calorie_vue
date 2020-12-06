@@ -35,6 +35,11 @@
                       required
                     />
                     <v-text-field
+                      v-model="intake.current_weight"
+                      label="Weight (lbs)"
+                      required
+                    />
+                    <v-text-field
                       v-model="intake.fat_perc"
                       label="Body Fat (%)"
                       required
@@ -55,7 +60,6 @@
                       label="Carbs (g)"
                       required
                       type="number"
-
                     />
                     <v-text-field
                       v-model="intake.intake_date"
