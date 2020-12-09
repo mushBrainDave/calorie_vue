@@ -82,7 +82,8 @@ export default {
           label: {
             text: 'Calories',
           },
-          minValue: '1000'
+          minValue: '1000',
+          zooming: true
         }
       };
     
