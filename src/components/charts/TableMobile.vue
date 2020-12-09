@@ -10,7 +10,7 @@
       :sort-by="['intake_date']"
     :sort-desc="sortDesc"
     hide-default-footer              
-    item-key="name"
+    item-key="calories"
     >
     <!-- toolbars -->
         <template v-slot:header>
