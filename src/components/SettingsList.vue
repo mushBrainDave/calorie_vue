@@ -42,6 +42,7 @@
           <v-data-table
             :headers="headers"
             :items="settings"
+            hide-default-footer
             class="elevation-1"
             style="max-height: 300px; overflow-y: auto"
             v-if="!isMobile"
