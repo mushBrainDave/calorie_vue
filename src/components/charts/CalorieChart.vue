@@ -14,22 +14,12 @@ export default {
   components: {
     zingchart: zingchartVue
   },
-  data() {
-    return {
-      chartData: {
-        type: "line",
-        series: [
-            { values: this.inta },
-        ]
-      }
-    };
-  },
 
   computed: {
     inta() {
-      let sorted = this.intakes.sort((a,b) => a.intake_date - b.intake_date);
-      return sorted.map(o => {
-        return [o.intake_date, parseInt(o.calories)]
+      let sorted = this.intakes.sort((a,b) => (a.intake_date > b.intake_date) ? 1 : ((b.intake_date > a.intake_date) ? -1 : 0));
+        return sorted.map(o => {
+          return [o.intake_date, parseInt(o.calories)]
       });
     },
     chartConfig() {
