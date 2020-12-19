@@ -7,7 +7,7 @@
     :items-per-page.sync="itemsPerPage"
     :page="page"
     :search="search"
-      :sort-by="['intake_date']"
+    :sort-by="['intake_date']"
     :sort-desc="sortDesc"
     hide-default-footer              
     item-key="calories"
