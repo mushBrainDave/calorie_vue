@@ -6,7 +6,7 @@
             <div>
                 <v-tabs v-model="tab" show-arrows background-color="deep-purple accent-4" icons-and-text dark grow>
                     <v-tabs-slider color="purple darken-4"></v-tabs-slider>
-                    <v-tab v-for="i in tabs" :key="i">
+                    <v-tab v-for="i in tabs" :key="i.name">
                         <v-icon large>{{ i.icon }}</v-icon>
                         <div class="caption py-1">{{ i.name }}</div>
                     </v-tab>
@@ -63,7 +63,7 @@
                                             v-model="credentials.username"
                                             :counter="70"
                                             label="Username"
-                                            :rules="emailRules" 
+                                            :rules="rules.username" 
                                             maxlength="70"
                                             required></v-text-field>
                                         </v-col>
@@ -73,7 +73,7 @@
                                             v-model="credentials.password" 
                                             :counter="20"
                                             label="Password"
-                                            :rules="[rules.required, rules.min]"
+                                            :rules="rules.password"
                                             maxlength="20"
                                             required
                                             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'" 
@@ -131,6 +131,7 @@
       rules: {
         username: [
           v => !!v || "Username is required",
+          v => (v && v.length > 3) || "A username must be more than 3 characters long",
           v => /^[a-z0-9_]+$/.test(v) || "A username can only contain letters and digits"
         ],
         password: [
