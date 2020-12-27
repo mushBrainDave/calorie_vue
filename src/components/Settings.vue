@@ -159,6 +159,14 @@
       }
     },
     mounted() {
+      apiService.getSetting().then(response => {
+        this.settings = response.data;
+      }).catch(error => {
+        if (error.response.status === 401) {
+          router.push("/auth")
+        }
+      })
+      //modify this conditional when creating read-only form
       if (this.$route.params.pk) {
         this.pageTitle = "Edit Settings";
         this.isUpdate = true;

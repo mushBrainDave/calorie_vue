@@ -66,7 +66,7 @@
         { title: 'Home', url:"/"},
         //{ title: 'Customers', url:"/customer-list" },
         { title: 'Intake', url:"/intake-list" },
-        { title: 'Settings', url:"/settings-list" },
+        { title: 'Settings', url:"/settings" },
       ]
     }),
     mounted() {
