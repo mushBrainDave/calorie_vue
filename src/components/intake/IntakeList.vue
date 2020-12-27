@@ -73,8 +73,8 @@
 
 <script>
 
-  import router from '../router';
-  import {APIService} from '../http/APIService';
+  import router from '../../router';
+  import {APIService} from '../../http/APIService';
   const apiService = new APIService();
 
   import TableDesktop from './charts/TableDesktop';

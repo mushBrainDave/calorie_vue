@@ -55,8 +55,8 @@
 </template>
 
 <script>
-  import router from '../router';
-  import {APIService} from '../http/APIService';
+  import router from '../../router';
+  import {APIService} from '../../http/APIService';
   import CalorieChart from './charts/CalorieChart.vue';
   const apiService = new APIService();
 
