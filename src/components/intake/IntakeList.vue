@@ -40,20 +40,20 @@
       <v-row align="center" justify="center">
         <v-col cols="12" md="10" v-resize="onResize">
           <v-menu
-            :close-on-content-click="false"
-            :nudge-right="40"
-            transition="scale-transition"
-            offset-y
-            min-width="290px"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          transition="scale-transition"
+          offset-y
+          min-width="290px"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
-                v-model="dateRangeText"
-                label="Intake Date Range"
-                prepend-icon="mdi-calendar"
-                readonly
-                v-bind="attrs"
-                v-on="on"
+              v-model="dateRangeText"
+              label="Intake Date Range"
+              prepend-icon="mdi-calendar"
+              readonly
+              v-bind="attrs"
+              v-on="on"
               ></v-text-field>
             </template>
             <v-date-picker
@@ -70,9 +70,7 @@
   </v-main>
 </template>
 
-
 <script>
-
   import router from '../../router';
   import {APIService} from '../../http/APIService';
   const apiService = new APIService();
@@ -102,10 +100,10 @@
       this.showMessages();
     },
     computed: {
-      dateRangeText () {
+      dateRangeText() {
         return this.dates.join(' ~ ')
       },
-      intakesByDate () {
+      intakesByDate() {
         return this.intakes.filter(entry => {
           return (
             entry.intake_date >= this.dates[0] &&
