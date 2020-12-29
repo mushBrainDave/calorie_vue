@@ -168,7 +168,7 @@
         });
       },
       getSettings() {
-        apiService.getSettingsList().then(response => {
+        apiService.getSetting().then(response => {
           this.settings = response.data.data;
           this.settingsSize = this.settings.length;
           if (localStorage.getItem("isAuthenticates")
