@@ -99,7 +99,7 @@
         apiService.updateSettings(this.settings).then(response => {
           if (response.status === 200) {
             this.settings = response.data;
-            router.push('/settings-list/update');
+            router.push('/');
           }else{
               this.showMsg = "error";
           }
