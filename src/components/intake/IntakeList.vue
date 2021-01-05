@@ -169,7 +169,7 @@
       },
       getSettings() {
         apiService.getSetting().then(response => {
-          this.settings = response.data.data;
+          this.settings = response.data;
           this.settingsSize = this.settings.length;
           if (localStorage.getItem("isAuthenticates")
             && JSON.parse(localStorage.getItem("isAuthenticates")) === true) {
